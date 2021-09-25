@@ -11,7 +11,7 @@ import retrofit2.http.GET
 interface ApiHitInterface {
 
     @GET("categories")
-    fun getJoke():Call<JokesCategory>
+    fun getJoke():Call<List<String>>
 
 
     companion object{
