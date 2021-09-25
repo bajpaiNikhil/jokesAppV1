@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout.HORIZONTAL
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,8 +54,14 @@ class CategoryFragment : Fragment() {
             if(response.isSuccessful){
                 val jCat = response.body()
 
+                fun onItemSelected(s: String) {
+                    Log.d("NameFragment" , s)
+                    val bundle = bundleOf("itemPicked" to s)
+                    findNavController().navigate(R.id.action_categoryFragment_to_jokeFragment , bundle)
+
+                }
                 jCat?.let {
-                    recyclerView.adapter = JokeAdapter(jCat)
+                    recyclerView.adapter = JokeAdapter(jCat , ::onItemSelected)
                 }
             }
         }

@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 //https://api.chucknorris.io/jokes/categories
@@ -12,6 +13,9 @@ interface ApiHitInterface {
 
     @GET("categories")
     fun getJoke():Call<List<String>>
+
+    @GET("random?")
+    fun getPickedJoke(@Query("category") itemPicked : String) : Call<JokesCategory>
 
 
     companion object{
